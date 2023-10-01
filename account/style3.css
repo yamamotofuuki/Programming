@@ -1,0 +1,91 @@
+header {
+    background-color: black;
+    height: 55px;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+header,
+ul {
+    float: left;
+    line-height: 40px;
+}
+
+header,
+ul,
+li {
+    color: white;
+    float: left;
+    font-size: 18px;
+    list-style: none;
+    padding-right: 20px;
+}
+
+main {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+h3 {
+    padding-left: 10px;
+    padding-top: 50px; /*?*/
+}
+
+.confirm {
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    border: 3px solid #ebebeb;
+    border-radius: 10px;
+    padding-top: 10px;
+    width: 650px;
+}
+
+.confirm p {
+    padding: 5px;
+    padding-left: 80px;
+}
+
+form {
+    display: inline-block; /*サブミット横並び指定*/
+}
+
+.submitt{
+    border: 1px solid lightgray;
+    font-size: 20px;
+    padding: 5px 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 20px;
+    margin-left: 100px;
+    color: white;
+    background-color: lightgray;
+    border-radius: 5px;
+    border-bottom: 2px solid gray;
+}
+
+.submit{
+    border: 1px solid lightgray;
+    font-size: 20px;
+    padding: 5px 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 20px;
+    margin-left: 50px;
+    color: white;
+    background-color: orange;
+    border-radius: 5px;
+    border-bottom: 2px solid gray;
+}
+
+footer {
+    background-color: black;
+    bottom: 0px;
+    clear: left;
+    color: white;
+    height: 55px;
+    left: 0px;
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+}

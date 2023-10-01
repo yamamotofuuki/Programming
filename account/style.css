@@ -1,0 +1,122 @@
+header {
+    background-color: black;
+    height: 60px;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+.logo {
+    float: left;
+    font-size: 25px;
+    line-height: 60px;
+    padding-left: 10px;
+}
+
+header, 
+ul {
+    float: left;
+    line-height: 40px;
+}
+
+header, 
+ul,
+li {
+    color: white;
+    float: left;
+    font-size: 18px;
+    list-style: none;
+    padding-right: 20px;
+}
+
+/* リンクのデフォルトスタイル */
+a {
+  text-decoration: none; /* 下線を削除 */
+  color: inherit; /* テキストの色を親要素の色に合わせる */
+}
+
+/* ホバー時のスタイル（リンクにマウスを乗せたときのスタイル） */
+a:hover {
+  text-decoration: underline; /* マウスホバー時に下線を表示 */
+}
+
+h1 {
+    border-left: 5px solid black;
+    border-bottom: 2px solid black;
+    margin-top: 2px;
+}
+
+h3 {
+    font-size: 15px;
+    font-family: serif;
+    margin-top: 10px;
+    margin-left: 20px;
+}
+
+h5 {
+    color: gray;
+}
+
+.left {
+    background-color: white;
+    border-top: 5px solid blue;
+    border-bottom: 5px solid blue;
+    border-right: 5px solid blue;
+    float: left;
+    height: 1300px;
+    width: 70%;
+}
+
+h4 {
+    border-bottom: 3px solid gray;
+    margin-top: 60px;
+    margin-left: 10px;
+}
+
+h6 {
+    color: gray;
+    margin-left: 30px;
+}
+
+.right {
+    background-color: white;
+    border-top: 5px solid red;
+    border-bottom: 5px solid red;
+    border-left: 5px solid red;
+    float: left;
+    height: 1300px;
+    width: 29%;
+}
+
+.box2 {
+    background-color: lightgray;
+    height: 440px;
+    text-align: center;
+    width: 870px; 
+}
+
+.box2 img {
+    margin: 20px 10px -10px 10px;
+    margin-top: 35px;
+    width: 170px;
+}
+
+.box_pic2 {
+    display: inline-block;
+}
+
+p {
+    font-size: 13px;
+}
+
+footer {
+    background-color: black;
+    bottom: 0px;
+    clear: left;
+    color: white;
+    height: 60px;
+    left: 0px;
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+}
