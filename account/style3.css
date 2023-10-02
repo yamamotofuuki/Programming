@@ -42,9 +42,30 @@ h3 {
 }
 
 .confirm p {
-    padding: 5px;
-    padding-left: 80px;
+    margin: 10px;
+    margin-left: 80px;   
 }
+
+.space-around {
+    margin-left: 100px; /*入力内容をスペース開けて表示*/
+}
+
+.mail , .account {
+    margin-left: 55px;
+}
+
+.pw , .code {
+    margin-left: 86px;
+}
+
+.gender {
+    margin-left: 137px;
+}
+
+.zyuusyo {
+    margin-left: 50px;
+}
+
 
 form {
     display: inline-block; /*サブミット横並び指定*/
@@ -76,6 +97,24 @@ form {
     background-color: orange;
     border-radius: 5px;
     border-bottom: 2px solid gray;
+}
+
+.complete {
+    margin: 180px;
+    margin-left: 530px;/* 「regist_complete.php」用*/
+}
+
+.submit3 {
+    border: 1px solid lightgray;
+    font-size: 20px;
+    padding: 5px 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin-left: 530px;
+    color: white;
+    background-color: orange;
+    border-radius: 5px;
+    border-bottom: 2px solid gray;/* 「regist_complete.php」用*/
 }
 
 footer {

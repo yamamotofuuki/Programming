@@ -25,51 +25,61 @@
     
     <div class="confirm">
         <p>名前 (姓)
-            <?php echo $_POST['family_name'];?>  <!--登録画面から送信された名前のデータを表示-->
-        </p>
+            <span class="space-around"><?php echo $_POST['family_name']; ?></span>
+        </p><!--登録画面から送信された名前のデータをスペース開けて表示-->
         
         <p>名前 (名)
-            <?php echo $_POST['last_name'];?>
+            <span class="space-around"><?php echo $_POST['last_name'];?></span>
         </p>
         
         <p>カナ (姓)
-            <?php echo $_POST['family_name_kana'];?>
+            <span class="space-around"><?php echo $_POST['family_name_kana'];?></span>
         </p>
         
         <p>カナ (名)
-            <?php echo $_POST['last_name_kana'];?>
+            <span class="space-around"><?php echo $_POST['last_name_kana'];?></span>
         </p>
         
         <p>メールアドレス
-            <?php echo $_POST['mail'];?>
+            <span class="mail"><?php echo $_POST['mail'];?></span>
         </p>
         
         <p>パスワード
-            <?php echo $_POST['password'];?>
+            <span class="pw"><?php echo $_POST['password'];?></span>
         </p>
+        
         
         <p>性別
-            <?php echo $_POST['gender'];?>
+            <span class="gender">
+            <?php $gender = $_POST['gender'];// フォームから送信された性別の値を取得
+                if ($gender == 'male') {// もし性別が 'male' と一致する場合「男」
+                    echo '男';
+                } elseif ($gender == 'female') {// もし性別が 'female' と一致する場合「女」
+                    echo '女';
+                } 
+            ?>
+            </span>
         </p>
+
         
         <p>郵便番号
-            <?php echo $_POST['postal_code'];?>
+            <span class="space-around"><?php echo $_POST['postal_code'];?></span>
         </p>
         
         <p>住所 (都道府県)
-            <?php echo $_POST['prefecture'];?>
+            <span class="zyuusyo"><?php echo $_POST['prefecture'];?></span>
         </p>
         
         <p>住所 (市区町村)
-            <?php echo $_POST['address_1'];?>
+            <span class="zyuusyo"><?php echo $_POST['address_1'];?></span>
         </p>
         
         <p>住所 (番地)
-            <?php echo $_POST['address_2'];?>
+            <span class="code"><?php echo $_POST['address_2'];?></span>
         </p>
         
         <p>アカウント権限
-            <?php echo $_POST['authority'];?>
+            <span class="account"><?php echo $_POST['authority'];?></span>
         </p>
         
     <form action="regist.php">

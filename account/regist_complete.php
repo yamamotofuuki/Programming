@@ -2,9 +2,9 @@
 
 mb_internal_encoding("utf8");
 
-$pdo = new PDO("mysql:dbname=lesson01;host=localhost;","root","mysql");
+$pdo = new PDO("mysql:dbname=lesson02;host=localhost;","root","mysql");
 
-$pdo ->exec("insert into contactform(
+$pdo ->exec("insert into account(
 family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,
 prefecture,address_1,address_2,authority)value
 
@@ -21,19 +21,37 @@ prefecture,address_1,address_2,authority)value
   <head>
     <meta charset="UTF-8">
     <title>アカウント登録完了画面</title>
-    <link rel="stylesheet" type="text/css" href="style2.css">
+    <link rel="stylesheet" type="text/css" href="style3.css">
   </head>
 
-  <body>
-    
-      <h3>アカウント登録完了画面</h3>
-      <div class="confirm">
-          <h1>登録完了しました</h1>
-      </div>
+<body>
+
+<header>
+  <div class="logo"></div>
+    <ul>
+        <li>トップ</li>
+        <li>プロフィール</li>
+        <li>D.IBlogについて</li>
+        <li>アカウント登録</li>
+        <li>問い合わせ</li>
+        <li>その他</li>
+    </ul>
+</header> 
+ 
+<main>
+    <h3>アカウント登録完了画面</h3>
+    <div class="complete">
+        <h1>登録完了しました</h1>
+    </div>
       
     <form action="index.html">
-        <input type="submit" class="button1" value="TOPページへ戻る">
+        <input type="submit" class="submit3" value="TOPページへ戻る">
     </form>
+</main>
+
+<footer>
+    Copyright D.I.works|D.I.blog is the one which A to Z about programming
+</footer>
       
-  </body>
+</body>
 </html>

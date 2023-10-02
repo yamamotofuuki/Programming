@@ -29,7 +29,7 @@
         <label>名前 (姓)</label>
         <input type="text" maxlength="10" class="text" size="35" name="family_name" value="<?php echo $name; ?>">
      </div><!-- name="xxx"部分は箱の名前(任意)-->
-       
+      
      <div>
         <label>名前 (名)</label>
         <input type="text" maxlength="10" class="text" size="35" name="last_name"  value="<?php echo $name; ?>">
@@ -54,12 +54,13 @@
         <label>パスワード</label>
         <input type="text" pattern="^[a-zA-Z0-9]+$"  maxlength="10" class="pw" size="35" name="password">  <!--半角英数のみ-->
       </div>
-       
+           
       <div>
         <label>性別</label>
-        <input type="radio" class="man" name="gender" checked>男
-        <input type="radio" class="woman" name="gender">女
-      </div>
+        <input type="radio" class="man" name="gender" value="male" checked>男
+        <input type="radio" class="woman" name="gender" value="female">女
+      </div>　　　　　　　　　　　　　　　　　<!--「value属性」で正しい値を指定-->
+
      
       <div>
         <label>郵便番号</label>
@@ -70,9 +71,9 @@
         <label>住所 (都道府県)</label>
         <select class="prefecture" name="prefecture">
         <option value="0"></option>
-        <option value="1">北海道</option>
-        <option value="2">青森県</option>
-        <option value="3">岩手県</option>
+        <option>北海道</option>
+        <option>青森県</option>
+        <option>岩手県</option>
         <option value="4">宮城県</option>
         <option value="5">秋田県</option>
         <option value="6">山形県</option>
@@ -132,8 +133,8 @@
       <div>
         <label>アカウント権限</label>
         <select class="prefecture" name="authority">
-        <option value="1">一般</option>
-        <option value="2">管理者</option>
+        <option>一般</option>
+        <option>管理者</option>
        
         </select>  
       </div>
