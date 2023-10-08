@@ -99,6 +99,13 @@ form div {
     border-bottom: 2px solid gray;
 }
 
+.error {
+    font-size: 15px;
+    color: red;
+    padding-top: 0px;
+    padding-bottom: 20px;
+}
+
 footer {
     background-color: black;
     bottom: 0px;
@@ -109,4 +116,9 @@ footer {
     line-height: 60px;
     text-align: center;
     width: 100%;
+}
+
+ /* プレースホルダーテキストの色を変更する為のスタイル*/
+::placeholder {
+    color: rgba(153,153,153,0.5); /* 透明度の指定*/
 }

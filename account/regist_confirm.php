@@ -24,6 +24,72 @@
 <h3>アカウント登録確認画面</h3>
     
     <div class="confirm">
+        
+    <?php
+      // フォームからのデータを取得
+        $family_name = $_POST['family_name'];
+        $last_name = $_POST['last_name'];
+        $family_name_kana = $_POST['family_name_kana'];
+        $last_name_kana = $_POST['last_name_kana'];
+        $mail = $_POST['mail'];
+        $password = $_POST['password'];
+        $prefecture = $_POST['prefecture'];
+        $postal_code = $_POST['postal_code'];
+        $address_1 = $_POST['address_1'];
+        $address_2 = $_POST['address_2'];
+
+      // 未選択の項目があるかを確認
+        $errors = array();
+
+        if (empty($family_name)) {
+            $errors[] = "名前(姓)が未入力です。";
+        }
+
+        if (empty($last_name)) {
+            $errors[] = "名前(名)が未入力です。";
+        }
+        
+        if (empty($family_name_kana)) {
+            $errors[] = "カナ(姓)が未入力です。";
+        }
+        
+        if (empty($last_name_kana)) {
+            $errors[] = "カナ(名)が未入力です。";
+        }
+        
+        if (empty($mail)) {
+            $errors[] = "メールアドレスが未入力です。";
+        }
+        
+        if (empty($password)) {
+            $errors[] = "パスワードが未入力です。";
+        }
+        
+        if (empty($postal_code)) {
+            $errors[] = "郵便番号が未入力です。";
+        }
+        
+        if (empty($prefecture)) {
+            $errors[] = "住所 (都道府県)が未選択です。";
+        }
+        
+        if (empty($address_1)) {
+            $errors[] = "住所 (市区町村)が未入力です。";
+        }
+        
+        if (empty($address_2)) {
+            $errors[] = "住所 (番地)が未入力です。";
+        }
+
+        // 未選択の項目がある場合、エラーメッセージを入力フォームに表示
+        if (!empty($errors)) {
+            $error_message = implode("<br>", $errors);
+            header("Location: regist.php?error=$error_message");
+            exit;
+        }
+    ?>
+
+        
         <p>名前 (姓)
             <span class="space-around"><?php echo $_POST['family_name']; ?></span>
         </p><!--登録画面から送信された名前のデータをスペース開けて表示-->
