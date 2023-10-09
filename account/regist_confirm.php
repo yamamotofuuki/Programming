@@ -111,9 +111,9 @@
         </p>
         
         <p>パスワード
-            <span class="pw"><?php echo $_POST['password'];?></span>
-        </p>
-        
+            <span class="pw"><?php echo str_repeat("●",strlen($_POST['password'])); ?></span>
+        </p>                  <!--(ストリングリピート)= 指定した文字("●")や文字列を繰り返して表示する関数
+                                           (ストラレン)= 文字列の長さを数える（入力した文字数を数える）関数-->
         
         <p>性別
             <span class="gender">

@@ -2,17 +2,29 @@
 
 mb_internal_encoding("utf8");
 
-$pdo = new PDO("mysql:dbname=lesson02;host=localhost;","root","mysql");
+// アカウント登録処理の成功・失敗を判定する変数
+$result = false; // 初期値をfalseに設定
 
-$pdo ->exec("insert into account(
-family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,
-prefecture,address_1,address_2,authority)value
+try {
+    $pdo = new PDO("mysql:dbname=lesson02;host=localhost;","roott","mysql");
 
-('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."',
-'".$_POST['last_name_kana']."','".$_POST['mail']."','".$_POST['password']."',
-'".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."',
-'".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."');");
+    // パスワードをハッシュ化
+    //PASSWORD_DEFAULTの指定で、PHPが利用可能な最適なハッシュアルゴリズムを選択
+    $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
 
+    $pdo ->exec("insert into account(
+    family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,
+    prefecture,address_1,address_2,authority)value
+
+   ('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."',
+    '".$_POST['last_name_kana']."','".$_POST['mail']."','".$hashedPassword."',
+    '".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."',
+    '".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."');");
+    $result = true;
+    
+} catch (PDOException $e) { //〈Exception〉= 全ての例外を補足
+    echo "データベースエラー:".$e->getMessage();
+}
 ?>
 
 <!DOCTYPE html>
@@ -29,21 +41,25 @@ prefecture,address_1,address_2,authority)value
 <header>
   <div class="logo"></div>
     <ul>
-        <li>トップ</li>
-        <li>プロフィール</li>
-        <li>D.IBlogについて</li>
-        <li>アカウント登録</li>
-        <li>問い合わせ</li>
-        <li>その他</li>
+      <li>トップ</li>
+      <li>プロフィール</li>
+      <li>D.IBlogについて</li>
+      <li>アカウント登録</li>
+      <li>問い合わせ</li>
+      <li>その他</li>
     </ul>
-</header> 
- 
+</header>
+
 <main>
-    <h3>アカウント登録完了画面</h3>
+  <h3>アカウント登録完了画面</h3>
     <div class="complete">
-        <h1>登録完了しました</h1>
+        <?php if ($result) { ?>
+            <h1>登録完了しました</h1>
+        <?php } else { ?>
+            <h2>エラーが発生した為アカウント登録できません</h2>
+        <?php } ?>
     </div>
-      
+
     <form action="index.html">
         <input type="submit" class="submit3" value="TOPページへ戻る">
     </form>
@@ -52,6 +68,6 @@ prefecture,address_1,address_2,authority)value
 <footer>
     Copyright D.I.works|D.I.blog is the one which A to Z about programming
 </footer>
-      
+
 </body>
 </html>

@@ -32,6 +32,11 @@ h3 {
     padding-top: 50px; /*?*/
 }
 
+h2 {
+    font-size:30px;
+    color: red;
+}
+
 .confirm {
     margin: 0 auto;
     background-color: #f1f1f1;
