@@ -6,11 +6,16 @@ mb_internal_encoding("utf8");
 $result = false; // 初期値をfalseに設定
 
 try {
-    $pdo = new PDO("mysql:dbname=lesson02;host=localhost;","roott","mysql");
+    $pdo = new PDO("mysql:dbname=lesson02;host=localhost;","root","mysql");
 
     // パスワードをハッシュ化
     //PASSWORD_DEFAULTの指定で、PHPが利用可能な最適なハッシュアルゴリズムを選択
     $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+    if ($hashedPassword == false) {
+        echo "パスワードのハッシュ化に失敗しました。";
+    } else {
+        // ハッシュ化が成功した場合は、$hashedPassword をデータベースに格納するなどの処理を行う。
+    }
 
     $pdo ->exec("insert into account(
     family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,
@@ -23,7 +28,9 @@ try {
     $result = true;
     
 } catch (PDOException $e) { //〈Exception〉= 全ての例外を補足
-    echo "データベースエラー:".$e->getMessage();
+    //echo "データベースエラー:".$e->getMessage(); //ブラウザ上での表示
+    $error_message = "データベースエラー:".$e->getMessage();
+    error_log($error_message, 3, "error.log"); // エラーメッセージを「error.log」に記録
 }
 ?>
 

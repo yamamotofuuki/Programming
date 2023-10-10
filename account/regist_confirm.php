@@ -1,3 +1,25 @@
+<?php
+// セッションを開始または再開
+session_start();
+
+    // フォームから送信されたデータをセッション変数に保存
+    $_SESSION['family_name'] = $_POST['family_name'];
+    $_SESSION['last_name'] = $_POST['last_name'];
+    $_SESSION['family_name_kana'] = $_POST['family_name_kana'];
+    $_SESSION['last_name_kana'] = $_POST['last_name_kana'];
+    $_SESSION['mail'] = $_POST['mail'];
+    $_SESSION['password'] = $_POST['password'];
+    $_SESSION['gender'] = $_POST['gender'];
+    $_SESSION['postal_code'] = $_POST['postal_code'];
+    $_SESSION['prefecture'] = $_POST['prefecture'];
+    $_SESSION['address_1'] = $_POST['address_1'];
+    $_SESSION['address_2'] = $_POST['address_2'];
+    $_SESSION['authority'] = $_POST['authority'];
+
+// セッションを終了させる
+session_write_close();
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -34,9 +56,10 @@
         $mail = $_POST['mail'];
         $password = $_POST['password'];
         $prefecture = $_POST['prefecture'];
-        $postal_code = $_POST['postal_code'];
+        $postal_code = $_POST['postal_code']; 
         $address_1 = $_POST['address_1'];
         $address_2 = $_POST['address_2'];
+        
 
       // 未選択の項目があるかを確認
         $errors = array();
@@ -118,15 +141,14 @@
         <p>性別
             <span class="gender">
             <?php $gender = $_POST['gender'];// フォームから送信された性別の値を取得
-                if ($gender == 'male') {// もし性別が 'male' と一致する場合「男」
+                if ($gender == '0') { // もし性別が'0'と一致する場合「男」
                     echo '男';
-                } elseif ($gender == 'female') {// もし性別が 'female' と一致する場合「女」
+                } elseif ($gender == '1') { // もし性別が'1'と一致する場合「女」
                     echo '女';
                 } 
             ?>
             </span>
         </p>
-
         
         <p>郵便番号
             <span class="space-around"><?php echo $_POST['postal_code'];?></span>
@@ -145,7 +167,14 @@
         </p>
         
         <p>アカウント権限
-            <span class="account"><?php echo $_POST['authority'];?></span>
+            <span class="account"><?php $authority = $_POST['authority'];
+                if ($authority == '0') { // もし権限が'0'と一致する場合「一般」
+                    echo '一般';
+                } elseif ($authority == '1') { // もし権限が'1'と一致する場合「管理者」
+                    echo '管理者';
+                } 
+            ?>
+            </span>
         </p>
         
     <form action="regist.php">

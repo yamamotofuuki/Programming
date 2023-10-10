@@ -27,6 +27,10 @@ main {
     padding-bottom: 20px;
 }
 
+h1 {
+    padding-left: 180px;
+}
+
 h3 {
     padding-left: 10px;
     padding-top: 50px; /*?*/
@@ -106,7 +110,7 @@ form {
 
 .complete {
     margin: 180px;
-    margin-left: 530px;/* 「regist_complete.php」用*/
+    margin-left: 350px;/* 「regist_complete.php」用*/
 }
 
 .submit3 {
