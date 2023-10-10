@@ -16,15 +16,24 @@ try {
     } else {
         // ハッシュ化が成功した場合は、$hashedPassword をデータベースに格納するなどの処理を行う。
     }
-
+    
+    
+    // 登録日時を取得 時差7時間
+        $registered_time = date('Y-m-d H:i:s',strtotime('+7 hours'));
+    
+     // 削除フラグを設定 intval=整数に変換する関数
+    $delete_flag = intval('delete_flag');
+   
+    
     $pdo ->exec("insert into account(
     family_name,last_name,family_name_kana,last_name_kana,mail,password,gender,postal_code,
-    prefecture,address_1,address_2,authority)value
+    prefecture,address_1,address_2,authority,delete_flag,registered_time)value
 
    ('".$_POST['family_name']."','".$_POST['last_name']."','".$_POST['family_name_kana']."',
     '".$_POST['last_name_kana']."','".$_POST['mail']."','".$hashedPassword."',
     '".$_POST['gender']."','".$_POST['postal_code']."','".$_POST['prefecture']."',
-    '".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."');");
+    '".$_POST['address_1']."','".$_POST['address_2']."','".$_POST['authority']."',
+    '".$delete_flag."','".$registered_time."');");
     $result = true;
     
 } catch (PDOException $e) { //〈Exception〉= 全ての例外を補足

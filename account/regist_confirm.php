@@ -60,6 +60,7 @@ session_write_close();
         $address_1 = $_POST['address_1'];
         $address_2 = $_POST['address_2'];
         
+        
 
       // 未選択の項目があるかを確認
         $errors = array();
