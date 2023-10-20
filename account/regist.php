@@ -41,6 +41,7 @@ session_unset();
         <li>プロフィール</li>
         <li>D.IBlogについて</li>
         <li>アカウント登録</li>
+        <li>アカウント一覧</li>
         <li>問い合わせ</li>
         <li>その他</li>
     </ul>
