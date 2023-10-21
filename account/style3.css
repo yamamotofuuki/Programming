@@ -137,3 +137,19 @@ footer {
     text-align: center;
     width: 100%;
 }
+
+/*「list.php」用 */
+table {
+    width: 100%;
+    border-collapse: collapse;　/*セルのボーダー表示形式を指定 */
+}
+
+th, td {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 5px;
+}
+
+tr:nth-child(even) { /*一部の要素のみ背景色を変更*/
+    background-color: #f2f2f2; 
+}

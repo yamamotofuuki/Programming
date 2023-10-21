@@ -97,7 +97,21 @@
               echo "</tr>"; // 行の終了
           }                //echo:取得した情報の表示と表示場所指定
         
-          ?>
+  ?>
+          <script>
+              function updateAccount(accountId) {
+                  // 更新処理を実行
+                  // 更新処理が完了したら、別のページに遷移
+                  window.location.href = "update.php?id=" + accountId;
+                     //クリックされたら accountId を取得し、それをクエリ文字列として遷移先のURLに追加
+              }
+
+              function deleteAccount(accountId) {
+                  // 削除処理を実行
+                  // 削除処理が完了したら、別のページに遷移
+                  window.location.href = "delete.php?id=" + accountId;
+              }
+          </script>
 
       </table>
   </div>

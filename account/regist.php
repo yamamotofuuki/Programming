@@ -20,7 +20,7 @@ $authority = isset($_SESSION['authority']) ? $_SESSION['authority'] : '';
 session_unset();
 
 // ユーザーがログアウトした際、セッションを破棄し新しいセッションを開始する必要がある場合
-//session_destroy();
+session_destroy();
 
 ?>
 

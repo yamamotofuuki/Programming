@@ -2,6 +2,13 @@
 
 mb_internal_encoding("utf8");
 
+// ゼロパディングを適用する関数の定義        
+//str_pad ⇒ 文字列を指定した桁数に調整する関数
+function zeroPad($value, $length) {
+    return str_pad($value, $length, '0', STR_PAD_LEFT);
+
+}
+
 // アカウント登録処理の成功・失敗を判定する変数
 $result = false; // 初期値をfalseに設定
 
@@ -17,9 +24,11 @@ try {
         // ハッシュ化が成功した場合は、$hashedPassword をデータベースに格納するなどの処理を行う。
     }
     
+    // ゼロパディングを適用
+    $postal_code = zeroPad($_POST['postal_code'], 7); // 7桁のゼロパディング
     
     // 登録日時を取得 時差7時間
-        $registered_time = date('Y-m-d H:i:s',strtotime('+7 hours'));
+    $registered_time = date('Y-m-d H:i:s',strtotime('+7 hours'));
     
      // 削除フラグを設定 intval=整数に変換する関数
     $delete_flag = intval('delete_flag');

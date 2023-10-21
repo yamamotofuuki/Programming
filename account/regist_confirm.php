@@ -17,7 +17,7 @@ session_start();
     $_SESSION['authority'] = $_POST['authority'];
 
 // セッションを終了させる
-session_write_close();
+//session_write_close();
 ?>
 
 <!DOCTYPE html>
