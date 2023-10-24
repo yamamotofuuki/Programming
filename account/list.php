@@ -57,6 +57,9 @@
               $deleteFlag = $row['delete_flag'];
               // 登録日時をフォーマットする
               $registeredTime = date('Y-m-d', strtotime($row['registered_time']));
+              
+              // 更新日時をフォーマットする
+              $update_time = date('Y-m-d', strtotime($row['update_time']));
 
 
               // DBから取得した性別、権限、削除フラグの数値をテキストに変換
@@ -89,10 +92,17 @@
               echo "<td>".$authorityText."</td>";
               echo "<td>".$deleteFlagText."</td>";
               echo "<td>".$registeredTime."</td>";
-              echo "<td>".$row['update_time']."</td>";
+              
+              if ($row['update_time'] !== null) {
+                  $update_time = date('Y-m-d', strtotime($row['update_time']));
+                  echo "<td>".$update_time."</td>";
+              } else {
+                  echo "<td></td>"; // NULL値の場合、空白を表示
+              }
+              
               echo "<td>";
-              echo "<button onclick='deleteAccount(".$row['id'].")'>更新</button>";
-              echo "<button onclick='updateAccount(".$row['id'].")'>削除</button>";
+              echo "<button onclick='updateAccount(".$row['id'].")'>更新</button>";
+              echo "<button onclick='deleteAccount(".$row['id'].")'>削除</button>";
               echo "</td>";
               echo "</tr>"; // 行の終了
           }                //echo:取得した情報の表示と表示場所指定

@@ -2,7 +2,7 @@
 
 mb_internal_encoding("utf8");
 
-// ゼロパディングを適用する関数の定義        
+// ゼロパディングを適用する関数の定義        ⇒「ZEROFILL属性」のみでOK！
 //str_pad ⇒ 文字列を指定した桁数に調整する関数
 function zeroPad($value, $length) {
     return str_pad($value, $length, '0', STR_PAD_LEFT);

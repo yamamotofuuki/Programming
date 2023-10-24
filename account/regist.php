@@ -222,7 +222,7 @@ session_destroy();
     <label>住所 (市区町村)</label>
     <input type="text" maxlength="10" class="prefecture" size="35" name="address_1"
            placeholder="新宿区1丁目"
-               pattern="[ぁ-んァ-ン一-龠0-9ー－\s]*" value="<?php echo isset($address_1) ? htmlspecialchars($address_1, ENT_QUOTES) : ''; ?>"> 
+               pattern="[ぁ-んァ-ン一-龠0-9ー－\-s]*" value="<?php echo isset($address_1) ? htmlspecialchars($address_1, ENT_QUOTES) : ''; ?>"> 
   </div><!-- ぁ-ん:ひらがな ァ-ン:カタカナ 一-龠:漢字 0-9:数字 ー－:長音符 \s:スペース-->
   <?php
     // もしGETパラメータにerrorが含まれている場合、エラーメッセージを表示
@@ -235,7 +235,7 @@ session_destroy();
     <label>住所 (番地)</label>
     <input type="text" maxlength="100" class="code" size="35" name="address_2"
            placeholder="1-2-3"
-               pattern="[ぁ-ん一-龠0-9ァ-ンー－\s]*" value="<?php echo isset($address_2) ? htmlspecialchars($address_2, ENT_QUOTES) : ''; ?>">
+               pattern="[ぁ-ん一-龠0-9ァ-ンー－\-s]*" value="<?php echo isset($address_2) ? htmlspecialchars($address_2, ENT_QUOTES) : ''; ?>">
   </div>
   <?php
     // もしGETパラメータにerrorが含まれている場合、エラーメッセージを表示
