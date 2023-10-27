@@ -1,0 +1,94 @@
+header {
+    background-color: black;
+    height: 55px;
+    left: 0px;
+    top: 0px;
+    width: 100%;
+}
+
+header,
+ul {
+    float: left;
+    line-height: 40px;
+}
+
+header,
+ul,
+li {
+    color: white;
+    float: left;
+    font-size: 18px;
+    list-style: none;
+    padding-right: 20px;
+}
+
+h3 {
+    padding-left: 10px;
+    padding-top: 50px; /*?*/
+}
+
+main {
+    padding-top: 5px;
+    padding-bottom: 20px;
+}
+
+.main-container {
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    border: 3px solid #ebebeb;
+    border-radius: 10px;
+    padding-top: 10px;
+    width: 650px;
+}
+
+.main-container label {
+    margin: 5px;
+    margin-left: 100px;   
+}
+
+.name-label { 
+    width: 150px; /*入力内容をスペース開けて表示*/
+    display: inline-block;
+}
+
+.mail {
+    width: 150px; 
+    display: inline-block;
+    
+}
+
+.pw {
+    width: 140px; 
+    display: inline-block;
+}
+
+.gender, .zyuusyo, .code, .account {
+    width: 150px;
+    display: inline-block;
+}
+
+.submit {
+    border: 1px solid lightgray;
+    font-size: 20px;
+    padding: 5px 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+    margin: 10px;
+    margin-left: 220px;
+    color: white;
+    background-color: orange;
+    border-radius: 5px;
+    border-bottom: 2px solid gray;
+}
+
+footer {
+    background-color: black;
+    bottom: 0px;
+    clear: left;
+    color: white;
+    height: 55px;
+    left: 0px;
+    line-height: 60px;
+    text-align: center;
+    width: 100%;
+}
