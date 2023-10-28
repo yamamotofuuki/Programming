@@ -179,11 +179,11 @@ session_start();
             </span>
         </p>
         
-    <form action="regist.php">
+    <form action="update.php">
         <input type="submit" class="submitt" value="前に戻る">
     </form>
     
-    <form action="regist_complete.php" method="post">
+    <form action="update_complete.php" method="post">
         <input type="submit" class="submit" value="更新する">
             <!--htmlから引き渡されたpostをregist_complete.phpへと送信-->
         <input type="hidden" value="<?php echo $_POST ['family_name'];?>" name="family_name">
