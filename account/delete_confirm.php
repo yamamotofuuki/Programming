@@ -1,3 +1,10 @@
+<?php
+
+// id を取得
+$accountId = $_GET['id'];
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -33,11 +40,13 @@
             }
         </style>
  
-    <form action="delete.php">
+    <form action="delete.php" method="GET">
+        <input type="hidden" name="id" value="<?php echo $accountId; ?>">
         <input type="submit" class="submitt" value="前に戻る">
     </form>
     
     <form action="delete_complete.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $accountId; ?>">
         <input type="submit" class="submit" value="削除する">
     </form>
         

@@ -73,6 +73,7 @@
         <label class="account">アカウント権限</label><?php echo $authorityText; ?><br>
         
         <form action="delete_confirm.php">
+            <input type="hidden" name="id" value="<?php echo $accountId; ?>">
             <input type="submit" class="submit" value="確認する">
         </form>
         

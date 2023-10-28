@@ -1,3 +1,34 @@
+<?php
+
+// id を取得
+$accountId = $_POST['id'];
+
+// アカウント削除処理の成功・失敗を判定する変数
+$result = false; // 初期値をfalseに設定
+
+ // 削除処理を行う
+try {
+    $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
+    
+    $stmt = $pdo->prepare("UPDATE account SET delete_flag = 1 WHERE id = :id");
+    $stmt->bindParam(':id', $accountId);
+    $stmt->execute();
+    
+    // 削除成功したかどうかを確認する
+    if ($stmt->rowCount() > 0) {
+        echo "削除フラグを更新しました";
+    } else {
+        echo "削除できませんでした";
+    }
+    
+    $result = true;
+    
+} catch (PDOException $e) {
+    $error_message = "データベースエラー: " . $e->getMessage();
+    error_log($error_message, 3, "error.log");
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
   <head>
@@ -22,10 +53,13 @@
 </header>  
 
 <main>
-<h3>アカウント削除完了画面</h3>
+    <h3>アカウント削除完了画面</h3>
     <div class="confirm">
-        
-    <h1>削除が完了しました</h1>
+        <?php if ($result) { ?>
+        <h1>削除完了しました</h1>
+        <?php } else { ?>
+        <h2>エラーが発生した為アカウント削除できません</h2>
+        <?php } ?>
       
     <form action="list.php" method="post">
         <input type="submit" class="submi" value="TOPページに戻る">
