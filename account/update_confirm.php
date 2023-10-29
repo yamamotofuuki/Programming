@@ -2,6 +2,10 @@
 // セッションを開始または再開
 session_start();
 
+    // セッションに $accountId を格納
+    $accountId = $_POST['id'];
+    $_SESSION['accountId'] = $accountId;
+
     // フォームから送信されたデータをセッション変数に保存
     $_SESSION['family_name'] = $_POST['family_name'];
     $_SESSION['last_name'] = $_POST['last_name'];
@@ -184,6 +188,7 @@ session_start();
     </form>
     
     <form action="update_complete.php" method="post">
+        <input type="hidden" name="id" value="<?php echo $accountId; ?>">
         <input type="submit" class="submit" value="更新する">
             <!--htmlから引き渡されたpostをregist_complete.phpへと送信-->
         <input type="hidden" value="<?php echo $_POST ['family_name'];?>" name="family_name">

@@ -1,3 +1,29 @@
+<?php
+// セッションを開始または再開
+session_start();
+
+// セッション変数から値を取得し、フォームに表示
+$family_name = isset($_SESSION['family_name']) ? $_SESSION['family_name'] : '';
+$last_name = isset($_SESSION['last_name']) ? $_SESSION['last_name'] : '';
+$family_name_kana = isset($_SESSION['family_name_kana']) ? $_SESSION['family_name_kana'] : '';
+$last_name_kana = isset($_SESSION['last_name_kana']) ? $_SESSION['last_name_kana'] : '';
+$mail = isset($_SESSION['mail']) ? $_SESSION['mail'] : '';
+$password = isset($_SESSION['password']) ? $_SESSION['password'] : '';
+$gender = isset($_SESSION['gender']) ? $_SESSION['gender'] : '';
+$postal_code = isset($_SESSION['postal_code']) ? $_SESSION['postal_code'] : '';
+$prefecture = isset($_SESSION['prefecture']) ? $_SESSION['prefecture'] : '';
+$address_1 = isset($_SESSION['address_1']) ? $_SESSION['address_1'] : '';
+$address_2 = isset($_SESSION['address_2']) ? $_SESSION['address_2'] : '';
+$authority = isset($_SESSION['authority']) ? $_SESSION['authority'] : '';
+
+// セッション変数のデータをクリアする
+session_unset();
+
+// ユーザーがログアウトした際、セッションを破棄し新しいセッションを開始する必要がある場合
+session_destroy();
+
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -27,11 +53,10 @@
         $last_name_kana = $row['last_name_kana'];
         $mail = $row['mail'];
         
-        
-        // $row が未定義でないことを確認する
+       // $row が未定義でないことを確認する
         if (isset($row) && isset($row['password'])) {
             $passwordLength = strlen($row['password']);
-            $maskedPassword = str_pad("●", $passwordLength);
+            $maskedPassword = str_pad("●", 1); //「●」の数を指定
         }
         
         $gender = $row['gender'];
@@ -135,7 +160,7 @@
     <div>   
       <label>パスワード</label>
         <input type="text" maxlength="10" class="pw" size="35" name="password"
-               placeholder="Pwssword12" pattern="^[a-zA-Z0-9]+$" 
+               placeholder="新しいパスワードを入力" pattern="^[a-zA-Z0-9]+$" 
                value="<?php echo isset($maskedPassword) ? 
                htmlspecialchars($maskedPassword, ENT_QUOTES) : ''; ?>"><br>
     </div>
