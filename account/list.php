@@ -100,12 +100,18 @@
                   echo "<td></td>"; // NULL値の場合、空白を表示
               }
               
-              echo "<td>";
-              echo "<button onclick='updateAccount(".$row['id'].")'>更新</button>";
-              echo "<button onclick='deleteAccount(".$row['id'].")'>削除</button>";
-              echo "</td>";
-              echo "</tr>"; // 行の終了
-          }                //echo:取得した情報の表示と表示場所指定
+              // 削除した場合(削除フラグ1の場合)の処理
+              if ($deleteFlag == 0) {
+                  echo "<td>";
+                  echo "<button onclick='updateAccount(".$row['id'].")'>更新</button>";
+                  echo "<button onclick='deleteAccount(".$row['id'].")'>削除</button>";
+                  echo "</td>";
+              } else {
+                  echo "<td>削除済</td>"; // "<td></td>"; この行を削除
+              }
+
+          }  
+          //echo:取得した情報の表示と表示場所指定
         
   ?>
           <script>

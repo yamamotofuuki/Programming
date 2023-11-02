@@ -50,18 +50,12 @@ try {
 
     $stmt->execute();
     
-    // 更新成功したかどうかを確認
-    if ($stmt->rowCount() > 0) {
-        echo "更新フラグを更新しました";
-    } else {
-        echo "更新できませんでした";
-    }
-
     $result = true;
     
 } catch (PDOException $e) {
     $error_message = "データベースエラー: " . $e->getMessage();
-    echo $error_message;
+    error_log($error_message, 3, "error.log");
+    //echo $error_message;
 }
 ?>
 
@@ -97,7 +91,7 @@ try {
         <h2>エラーが発生した為アカウント更新できません</h2>
         <?php } ?>
       
-    <form action="list.php" method="post">
+    <form action="index.html" method="post">
         <input type="submit" class="submi" value="TOPページに戻る">
     </form>
         

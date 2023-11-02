@@ -56,7 +56,7 @@ session_destroy();
        // $row が未定義でないことを確認する
         if (isset($row) && isset($row['password'])) {
             $passwordLength = strlen($row['password']);
-            $maskedPassword = str_pad("●", 1); //「●」の数を指定
+            $maskedPassword = str_pad("●●●●●●●●●●",10); //「●」の数を指定
         }
         
         $gender = $row['gender'];
@@ -209,6 +209,126 @@ session_destroy();
         <option value="宮城県"<?php echo isset($prefecture) && $prefecture == '宮城県' ? 
         'selected' : ''; ?>>宮城県</option>
         
+        <option value="秋田県"<?php echo isset($prefecture) && $prefecture == '秋田県' ? 
+        'selected' : ''; ?>>秋田県</option>
+            
+        <option value="山形県"<?php echo isset($prefecture) && $prefecture == '山形県' ? 
+        'selected' : ''; ?>>山形県</option>
+            
+        <option value="茨城県"<?php echo isset($prefecture) && $prefecture == '茨城県' ? 
+        'selected' : ''; ?>>茨城県</option>
+            
+        <option value="群馬県"<?php echo isset($prefecture) && $prefecture == '群馬県' ? 
+        'selected' : ''; ?>>群馬県</option>
+            
+        <option value="埼玉県"<?php echo isset($prefecture) && $prefecture == '埼玉県' ? 
+        'selected' : ''; ?>>埼玉県</option>
+            
+        <option value="千葉県"<?php echo isset($prefecture) && $prefecture == '千葉県' ? 
+        'selected' : ''; ?>>千葉県</option>
+            
+        <option value="東京都"<?php echo isset($prefecture) && $prefecture == '東京都' ? 
+        'selected' : ''; ?>>東京都</option>    
+            
+        <option value="神奈川県"<?php echo isset($prefecture) && $prefecture == '神奈川県' ? 
+        'selected' : ''; ?>>神奈川県</option>    
+            
+        <option value="新潟県"<?php echo isset($prefecture) && $prefecture == '新潟県' ? 
+        'selected' : ''; ?>>新潟県</option>
+            
+        <option value="富山県"<?php echo isset($prefecture) && $prefecture == '富山県' ? 
+        'selected' : ''; ?>>富山県</option>    
+            
+        <option value="石川県"<?php echo isset($prefecture) && $prefecture == '石川県' ? 
+        'selected' : ''; ?>>石川県</option>
+            
+        <option value="福井県"<?php echo isset($prefecture) && $prefecture == '福井県' ? 
+        'selected' : ''; ?>>福井県</option>
+            
+        <option value="山梨県"<?php echo isset($prefecture) && $prefecture == '山梨県' ? 
+        'selected' : ''; ?>>山梨県</option>
+            
+        <option value="長野県"<?php echo isset($prefecture) && $prefecture == '長野県' ? 
+        'selected' : ''; ?>>長野県</option>
+            
+        <option value="岐阜県"<?php echo isset($prefecture) && $prefecture == '岐阜県' ? 
+        'selected' : ''; ?>>岐阜県</option>
+            
+        <option value="静岡県"<?php echo isset($prefecture) && $prefecture == '静岡県' ? 
+        'selected' : ''; ?>>静岡県</option>
+            
+        <option value="愛知県"<?php echo isset($prefecture) && $prefecture == '愛知県' ? 
+        'selected' : ''; ?>>愛知県</option>
+            
+        <option value="三重県"<?php echo isset($prefecture) && $prefecture == '三重県' ? 
+        'selected' : ''; ?>>三重県</option>
+            
+        <option value="滋賀県"<?php echo isset($prefecture) && $prefecture == '滋賀県' ? 
+        'selected' : ''; ?>>滋賀県</option>
+            
+        <option value="京都府"<?php echo isset($prefecture) && $prefecture == '京都府' ? 
+        'selected' : ''; ?>>京都府</option>
+            
+        <option value="大阪府"<?php echo isset($prefecture) && $prefecture == '大阪府' ? 
+        'selected' : ''; ?>>大阪府</option>
+            
+        <option value="兵庫県"<?php echo isset($prefecture) && $prefecture == '兵庫県' ? 
+        'selected' : ''; ?>>兵庫県</option>
+            
+        <option value="奈良県"<?php echo isset($prefecture) && $prefecture == '奈良県' ? 
+        'selected' : ''; ?>>奈良県</option>
+            
+        <option value="和歌山県"<?php echo isset($prefecture) && $prefecture == '和歌山県' ? 
+        'selected' : ''; ?>>和歌山県</option>
+            
+        <option value="鳥取県"<?php echo isset($prefecture) && $prefecture == '鳥取県' ? 
+        'selected' : ''; ?>>鳥取県</option>
+            
+        <option value="島根県"<?php echo isset($prefecture) && $prefecture == '島根県' ? 
+        'selected' : ''; ?>>島根県</option>
+            
+        <option value="岡山県"<?php echo isset($prefecture) && $prefecture == '岡山県' ? 
+        'selected' : ''; ?>>岡山県</option>
+            
+        <option value="広島県"<?php echo isset($prefecture) && $prefecture == '広島県' ? 
+        'selected' : ''; ?>>広島県</option>
+        
+        <option value="山口県"<?php echo isset($prefecture) && $prefecture == '山口県' ? 
+        'selected' : ''; ?>>山口県</option>
+            
+        <option value="徳島県"<?php echo isset($prefecture) && $prefecture == '徳島県' ? 
+        'selected' : ''; ?>>徳島県</option>
+        
+        <option value="香川県"<?php echo isset($prefecture) && $prefecture == '香川県' ? 
+        'selected' : ''; ?>>香川県</option>
+            
+        <option value="愛媛県"<?php echo isset($prefecture) && $prefecture == '愛媛県' ? 
+        'selected' : ''; ?>>愛媛県</option>
+            
+        <option value="高知県"<?php echo isset($prefecture) && $prefecture == '高知県' ? 
+        'selected' : ''; ?>>高知県</option>
+            
+        <option value="佐賀県"<?php echo isset($prefecture) && $prefecture == '佐賀県' ? 
+        'selected' : ''; ?>>佐賀県</option>
+            
+        <option value="長崎県"<?php echo isset($prefecture) && $prefecture == '長崎県' ? 
+        'selected' : ''; ?>>長崎県</option>
+            
+        <option value="熊本県"<?php echo isset($prefecture) && $prefecture == '熊本県' ? 
+        'selected' : ''; ?>>熊本県</option>
+            
+        <option value="大分県"<?php echo isset($prefecture) && $prefecture == '大分県' ? 
+        'selected' : ''; ?>>大分県</option>
+            
+        <option value="宮崎県"<?php echo isset($prefecture) && $prefecture == '宮崎県' ? 
+        'selected' : ''; ?>>宮崎県</option>
+            
+        <option value="鹿児島県"<?php echo isset($prefecture) && $prefecture == '鹿児島県' ? 
+        'selected' : ''; ?>>鹿児島県</option>
+            
+        <option value="沖縄県"<?php echo isset($prefecture) && $prefecture == '沖縄県' ? 
+        'selected' : ''; ?>>沖縄県</option>
+            
         </select>
     </div>
     <?php
