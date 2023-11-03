@@ -11,13 +11,20 @@ $result = false; // 初期値をfalseに設定
 try {
     $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
     
-    // パスワードをハッシュ化
-    //PASSWORD_DEFAULTの指定で、PHPが利用可能な最適なハッシュアルゴリズムを選択
-    $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
-    if ($hashedPassword == false) {
-        echo "パスワードのハッシュ化に失敗しました。";
-    } else {
-        // ハッシュ化が成功した場合は、$hashedPassword をデータベースに格納するなどの処理を行う。
+    // 現在のパスワードを取得
+    $stmt = $pdo->prepare("SELECT password FROM account WHERE id = :id");
+    $stmt->bindParam(':id', $accountId);
+    $stmt->execute();
+    $currentPassword = $stmt->fetchColumn();
+
+    if ($_POST['password'] !== "") {
+        // 新しいパスワードが入力された場合、新しいパスワードをハッシュ化
+        $hashedPassword = password_hash($_POST['password'], PASSWORD_DEFAULT);
+        if ($hashedPassword == false) {
+            echo "パスワードのハッシュ化に失敗しました。";
+        } else {
+            // ハッシュ化が成功した場合は、$hashedPassword をデータベースに格納するなどの処理を行う。
+        }
     }
     
     // 更新日時を取得 時差7時間
@@ -33,12 +40,19 @@ try {
                            authority = :authority, update_time = :update_time 
                            WHERE id = :id");
     
+    // 以下のif文でパスワードの入力有無を確認し、パスワードが入力されている場合にパラメータを追加する
+    if ($_POST['password'] !== "") {
+        $stmt->bindValue(':password', $hashedPassword); // ハッシュ化したパスワードをバインド
+    } else {
+        // パスワードが空の場合、以前のパスワードをそのまま使用
+        $stmt->bindValue(':password', $currentPassword); // 以前のハッシュ値をバインド
+    }
+    
     $stmt->bindParam(':family_name', $_POST['family_name']);
     $stmt->bindParam(':last_name', $_POST['last_name']);
     $stmt->bindParam(':family_name_kana', $_POST['family_name_kana']);
     $stmt->bindParam(':last_name_kana', $_POST['last_name_kana']);
     $stmt->bindParam(':mail', $_POST['mail']);
-    $stmt->bindParam(':password', $hashedPassword); // ハッシュ化したパスワードをバインド
     $stmt->bindParam(':gender', $_POST['gender']);
     $stmt->bindParam(':postal_code', $_POST['postal_code']);
     $stmt->bindParam(':prefecture', $_POST['prefecture']);

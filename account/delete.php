@@ -64,9 +64,23 @@
         <label class="name-label">カナ (姓)</label><?php echo $row['family_name_kana']; ?><br>
         <label class="name-label">カナ (名)</label><?php echo $row['last_name_kana']; ?><br>
         <label class="mail">メールアドレス</label><?php echo $row['mail']; ?><br>
-        <label class="pw">パスワード</label><?php echo str_pad("●", strlen($row['password'])); ?>
+        <label class="pw">パスワード</label>
+        
+        <?php echo str_pad("●●●●●●●●●●", strlen($row['password'])); ?>
+        <br> <!-- 通常、実際のパスワードを再度表示(逆変換)できないので、任意での「●」表示 -->
+        
         <label class="gender">性別</label><?php echo $genderText; ?><br>
-        <label class="name-label">郵便番号</label><?php echo $row['postal_code']; ?><br>
+        
+        <?php
+        $postal_code = $row['postal_code'];
+        if ($postal_code == "0000000") {
+            $postal_code = "0000000";
+        } else {
+            $postal_code = ltrim($postal_code, '0'); //0で埋められた先頭の文字列を指定し削除して取得
+        }
+        ?>
+        <label class="name-label">郵便番号</label><?php echo $postal_code; ?><br>
+        
         <label class="zyuusyo">住所(都道府県)</label><?php echo $row['prefecture']; ?><br>
         <label class="zyuusyo">住所(市区町村)</label><?php echo $row['address_1']; ?><br>
         <label class="code">住所(番地)</label><?php echo $row['address_2']; ?><br>

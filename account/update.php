@@ -56,11 +56,18 @@ session_destroy();
        // $row が未定義でないことを確認する
         if (isset($row) && isset($row['password'])) {
             $passwordLength = strlen($row['password']);
-            $maskedPassword = str_pad("●●●●●●●●●●",10); //「●」の数を指定
+            $maskedPassword = str_pad("", 0); //「●」の数を指定
         }
         
         $gender = $row['gender'];
+        
         $postal_code = $row['postal_code'];
+        if ($postal_code == "0000000") {
+            $postal_code = "0000000";
+        } else {
+            $postal_code = ltrim($postal_code, '0'); //0で埋められた先頭の文字列を指定し削除して取得
+        }
+        
         $address_1 = $row['address_1'];
         $address_2 = $row['address_2'];
         $prefecture = $row['prefecture']; // 住所情報を取得
@@ -160,7 +167,7 @@ session_destroy();
     <div>   
       <label>パスワード</label>
         <input type="text" maxlength="10" class="pw" size="35" name="password"
-               placeholder="新しいパスワードを入力" pattern="^[a-zA-Z0-9]+$" 
+               placeholder="●●●●●●●●●●" pattern="^[a-zA-Z0-9]+$" 
                value="<?php echo isset($maskedPassword) ? 
                htmlspecialchars($maskedPassword, ENT_QUOTES) : ''; ?>"><br>
     </div>

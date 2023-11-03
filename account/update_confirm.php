@@ -90,9 +90,7 @@ session_start();
             $errors[] = "メールアドレスが未入力です。";
         }
         
-        if (empty($password)) {
-            $errors[] = "パスワードが未入力です。";
-        }
+        
         
         if (empty($postal_code)) {
             $errors[] = "郵便番号が未入力です。";
@@ -140,10 +138,18 @@ session_start();
         </p>
         
         <p>パスワード
-            <span class="pw"><?php echo str_repeat("●",strlen($_POST['password'])); ?></span>
-        </p>                  <!--(ストリングリピート)= 指定した文字("●")や文字列を繰り返して表示する関数
-                                           (ストラレン)= 文字列の長さを数える（入力した文字数を数える）関数-->
-        
+            <span class="pw">
+                <?php
+                if (!empty($_POST['password'])) {
+                    echo str_repeat("●", strlen($_POST['password']));
+                } else {
+                    echo str_repeat("●", 10);
+                }
+                ?>
+            </span>
+        </p><!--(ストリングリピート)= 指定した文字("●")や文字列を繰り返して表示する関数
+                (ストラレン)= 文字列の長さを数える（入力した文字数を数える）関数-->
+                  
         <p>性別
             <span class="gender">
             <?php $gender = $_POST['gender'];// フォームから送信された性別の値を取得

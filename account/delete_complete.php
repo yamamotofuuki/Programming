@@ -61,7 +61,7 @@ try {
         <h2>エラーが発生した為アカウント削除できません</h2>
         <?php } ?>
       
-    <form action="list.php" method="post">
+    <form action="index.html" method="post">
         <input type="submit" class="submi" value="TOPページに戻る">
     </form>
         
