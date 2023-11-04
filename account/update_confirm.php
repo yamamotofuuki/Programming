@@ -59,7 +59,6 @@ session_start();
         $family_name_kana = $_POST['family_name_kana'];
         $last_name_kana = $_POST['last_name_kana'];
         $mail = $_POST['mail'];
-        $password = $_POST['password'];
         $prefecture = $_POST['prefecture'];
         $postal_code = $_POST['postal_code']; 
         $address_1 = $_POST['address_1'];
@@ -89,8 +88,6 @@ session_start();
         if (empty($mail)) {
             $errors[] = "メールアドレスが未入力です。";
         }
-        
-        
         
         if (empty($postal_code)) {
             $errors[] = "郵便番号が未入力です。";
@@ -143,7 +140,7 @@ session_start();
                 if (!empty($_POST['password'])) {
                     echo str_repeat("●", strlen($_POST['password']));
                 } else {
-                    echo str_repeat("●", 10);
+                    echo str_repeat("パスワードは変更しません", 1);
                 }
                 ?>
             </span>
