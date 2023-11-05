@@ -1,3 +1,52 @@
+<?php
+mb_internal_encoding("utf8");
+
+// データベースへの接続
+$pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
+
+    
+// 検索ボタンが押された場合の処理
+if ($_SERVER["REQUEST_METHOD"] == "GET") {
+    // 条件を満たすアカウントのみを取得するクエリを準備
+    $sql = "SELECT * FROM account";
+
+    $where = []; // 検索条件を格納するための配列
+    
+    // 各検索条件の取得
+    $familyName = isset($_GET['family_name']) ? $_GET['family_name'] : '';
+    $lastName = isset($_GET['last_name']) ? $_GET['last_name'] : '';
+    $familyNameKana = isset($_GET['family_name_kana']) ? $_GET['family_name_kana'] : '';
+    $lastNameKana = isset($_GET['last_name_kana']) ? $_GET['last_name_kana'] : '';
+    $mail = isset($_GET['mail']) ? $_GET['mail'] : '';
+    $gender = isset($_GET['gender']) ? $_GET['gender'] : '';
+    $authority = isset($_GET['authority']) ? $_GET['authority'] : '';
+    
+    // 各検索条件が空でない場合、SQLの条件文を作成
+    if (!empty($familyName)) {
+        $where[] = "family_name LIKE '%$familyName%'";
+    }
+    if (!empty($lastName)) {
+        $where[] = "last_name LIKE '%$lastName%'";
+    }
+    if (!empty($familyNameKana)) {
+        $where[] = "family_name_kana LIKE '%$familyNameKana%'";
+    }
+    if (!empty($lastNameKana)) {
+        $where[] = "last_name_kana LIKE '%$lastNameKana%'";
+    }
+    if (!empty($mail)) {
+        $where[] = "mail LIKE '%$mail%'";
+    }
+    if (!empty($gender)) {
+        $where[] = "gender = $gender";
+    }
+    if (!empty($authority)) {
+        $where[] = "authority = $authority";
+    }
+
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -10,10 +59,10 @@
 <body>
   <?php
 
-    mb_internal_encoding("utf8");
-    $pdo = new PDO("mysql:dbname=lesson02;host=localhost;","root","mysql");
+    //mb_internal_encoding("utf8");
+    //$pdo = new PDO("mysql:dbname=lesson02;host=localhost;","root","mysql");
     
-    $stmt = $pdo->query("select * from account order by id desc"); 
+    //$stmt = $pdo->query("select * from account order by id desc"); 
     //情報を抽出する際のselect文 + ソートは降順表示
 
   ?>
@@ -33,6 +82,67 @@
 
 <main>
   <h3>アカウント一覧画面</h3>
+    
+  <form action="list.php" method="GET">
+    <table class="search-table">
+     
+      <tr>
+        <th>名前(姓)</th>
+        <td><input type="text" name="family_name"></td>
+        <th>名前(名)</th>
+        <td><input type="text" name="last_name"></td>
+      </tr>
+      <tr>
+        <th>カナ(姓)</th>
+        <td><input type="text" name="family_name_kana"></td>
+        <th>カナ(名)</th>
+        <td><input type="text" name="last_name_kana"></td>
+      </tr>
+      <tr>
+        <th>メールアドレス</th>
+        <td><input type="text" name="mail"></td>
+        <th>性別</th>
+        <td>
+          <input type="radio" name="gender" value="0" checked> 男
+          <input type="radio" name="gender" value="1"> 女
+        </td>
+      </tr>
+      <tr>
+        <th>アカウント権限</th>
+        <td>
+          <select name="authority">
+            <option value="0" selected>一般</option>
+            <option value="1">管理者</option>
+          </select>
+        </td>
+        <td></td>
+        <td></td>
+      </tr>
+          
+    </table>
+      
+    <button type="submit" class="submi">検索</button>
+      
+  </form>
+    
+  <style>
+    .search-table {
+        width: 1250px;
+    }
+    
+      .submi {
+          font: 10px;
+          padding: 5px 10px;
+          padding-left: 50px;
+          padding-right: 50px;
+          margin-left: 1115px;
+          margin-bottom: 30px;
+          color: black;
+          background-color: lightgray;
+          border-radius: 5px;
+      }
+  </style>
+    
   <div class="main-container">
       <table>
           <tr> <!-- Table Row =表の行 ・Table Header =表の見出し-->
@@ -51,6 +161,7 @@
           </tr>
           <?php
          
+          // 検索ボタンが押された場合のみ、データを表示
           while ($row = $stmt->fetch()){  //DBからレコードを取り出しwhile文でループ処理
               $gender = $row['gender'];
               $authority = $row['authority'];
@@ -109,11 +220,11 @@
               } else {
                   echo "<td>削除済</td>"; // "<td></td>"; この行を削除
               }
-
           }  
+        
           //echo:取得した情報の表示と表示場所指定
         
-  ?>
+        ?>
           <script>
               function updateAccount(accountId) {
                   // 更新処理を実行
