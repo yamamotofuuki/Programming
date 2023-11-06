@@ -3,7 +3,6 @@ mb_internal_encoding("utf8");
 
 // データベースへの接続
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
-
     
 // 検索ボタンが押された場合の処理
 if ($_SERVER["REQUEST_METHOD"] == "GET") {
@@ -44,6 +43,15 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $where[] = "authority = $authority";
     }
 
+    if (!empty($where)) {
+        $whereCondition = implode(" AND ", $where);
+        $sql .= " WHERE $whereCondition ORDER BY id DESC";
+        $stmt = $pdo->query($sql);
+    } else {
+        // 条件が空の場合、全てのアカウント情報を取得
+        $sql .= " ORDER BY id DESC";
+        $stmt = $pdo->query($sql);
+    }
 }
 ?>
 
@@ -124,25 +132,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
     <button type="submit" class="submi">検索</button>
       
   </form>
-    
-  <style>
-    .search-table {
-        width: 1250px;
-    }
-    
-      .submi {
-          font: 10px;
-          padding: 5px 10px;
-          padding-left: 50px;
-          padding-right: 50px;
-          margin-left: 1115px;
-          margin-bottom: 30px;
-          color: black;
-          background-color: lightgray;
-          border-radius: 5px;
-      }
-  </style>
-    
+  
   <div class="main-container">
       <table>
           <tr> <!-- Table Row =表の行 ・Table Header =表の見出し-->
@@ -162,66 +152,69 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
           <?php
          
           // 検索ボタンが押された場合のみ、データを表示
-          while ($row = $stmt->fetch()){  //DBからレコードを取り出しwhile文でループ処理
-              $gender = $row['gender'];
-              $authority = $row['authority'];
-              $deleteFlag = $row['delete_flag'];
-              // 登録日時をフォーマットする
-              $registeredTime = date('Y-m-d', strtotime($row['registered_time']));
+          if ($stmt) {
+              while ($row = $stmt->fetch()){  //DBからレコードを取り出しwhile文でループ処理
+                $gender = $row['gender'];
+                $authority = $row['authority'];
+                $deleteFlag = $row['delete_flag'];
+                // 登録日時をフォーマットする
+                $registeredTime = date('Y-m-d', strtotime($row['registered_time']));
               
-              // 更新日時をフォーマットする
-              $update_time = date('Y-m-d', strtotime($row['update_time']));
+                // 更新日時をフォーマットする
+                $update_time = date('Y-m-d', strtotime($row['update_time']));
 
 
-              // DBから取得した性別、権限、削除フラグの数値をテキストに変換
-              if ($gender == 0) {
-                  $genderText = '男';
-              } elseif ($gender == 1) {
-                  $genderText = '女';
-              }
+                // DBから取得した性別、権限、削除フラグの数値をテキストに変換
+                if ($gender == 0) {
+                    $genderText = '男';
+                } elseif ($gender == 1) {
+                    $genderText = '女';
+                }
 
-              if ($authority == 0) {
-                  $authorityText = '一般';
-              } elseif ($authority == 1) {
-                  $authorityText = '管理者';
-              } 
+                if ($authority == 0) {
+                    $authorityText = '一般';
+                } elseif ($authority == 1) {
+                    $authorityText = '管理者';
+                } 
     
-              if ($deleteFlag == 0) {
-                  $deleteFlagText = '有効';
-              } elseif ($deleteFlag == 1) {
-                  $deleteFlagText = '無効';
-              }
+                if ($deleteFlag == 0) {
+                    $deleteFlagText = '有効';
+                } elseif ($deleteFlag == 1) {
+                    $deleteFlagText = '無効';
+                }
               
-              echo "<tr>"; // 新しい行を開始
-              echo "<td>".$row['id']."</td>";
-              echo "<td>".$row['family_name']."</td>";
-              echo "<td>".$row['last_name']."</td>";
-              echo "<td>".$row['family_name_kana']."</td>";
-              echo "<td>".$row['last_name_kana']."</td>";
-              echo "<td>".$row['mail']."</td>";
-              echo "<td>".$genderText."</td>";
-              echo "<td>".$authorityText."</td>";
-              echo "<td>".$deleteFlagText."</td>";
-              echo "<td>".$registeredTime."</td>";
+                echo "<tr>"; // 新しい行を開始
+                echo "<td>".$row['id']."</td>";
+                echo "<td>".$row['family_name']."</td>";
+                echo "<td>".$row['last_name']."</td>";
+                echo "<td>".$row['family_name_kana']."</td>";
+                echo "<td>".$row['last_name_kana']."</td>";
+                echo "<td>".$row['mail']."</td>";
+                echo "<td>".$genderText."</td>";
+                echo "<td>".$authorityText."</td>";
+                echo "<td>".$deleteFlagText."</td>";
+                echo "<td>".$registeredTime."</td>";
               
-              if ($row['update_time'] !== null) {
-                  $update_time = date('Y-m-d', strtotime($row['update_time']));
-                  echo "<td>".$update_time."</td>";
-              } else {
-                  echo "<td></td>"; // NULL値の場合、空白を表示
-              }
+                if ($row['update_time'] !== null) {
+                    $update_time = date('Y-m-d', strtotime($row['update_time']));
+                    echo "<td>".$update_time."</td>";
+                } else {
+                    echo "<td></td>"; // NULL値の場合、空白を表示
+                }
               
-              // 削除した場合(削除フラグ1の場合)の処理
-              if ($deleteFlag == 0) {
-                  echo "<td>";
-                  echo "<button onclick='updateAccount(".$row['id'].")'>更新</button>";
-                  echo "<button onclick='deleteAccount(".$row['id'].")'>削除</button>";
-                  echo "</td>";
-              } else {
-                  echo "<td>削除済</td>"; // "<td></td>"; この行を削除
-              }
-          }  
-        
+                // 削除した場合(削除フラグ1の場合)の処理
+                if ($deleteFlag == 0) {
+                    echo "<td>";
+                    echo "<button onclick='updateAccount(".$row['id'].")'>更新</button>";
+                    echo "<button onclick='deleteAccount(".$row['id'].")'>削除</button>";
+                    echo "</td>";
+                } else {
+                    echo "<td>削除済</td>"; // "<td></td>"; この行を削除
+                }
+             }  
+            } else {
+                echo "<tr>データはありません</tr>";
+            } 
           //echo:取得した情報の表示と表示場所指定
         
         ?>
