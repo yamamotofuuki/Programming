@@ -4,8 +4,13 @@ mb_internal_encoding("utf8");
 // データベースへの接続
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
     
+// 初期表示では検索条件を空にする
+if ($_SERVER["REQUEST_METHOD"] == "GET" && empty($_GET)) {
+    $stmt = false; // データがないことを示すフラグ
+}
+
 // 検索ボタンが押された場合の処理
-if ($_SERVER["REQUEST_METHOD"] == "GET") {
+elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
     // 条件を満たすアカウントのみを取得するクエリを準備
     $sql = "SELECT * FROM account";
 
@@ -43,6 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
         $where[] = "authority = $authority";
     }
 
+    // クエリを準備して実行
     if (!empty($where)) {
         $whereCondition = implode(" AND ", $where);
         $sql .= " WHERE $whereCondition ORDER BY id DESC";
@@ -153,6 +159,8 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
          
           // 検索ボタンが押された場合のみ、データを表示
           if ($stmt) {
+            // $stmt がある場合は結果を表示
+            if ($stmt->rowCount() > 0) {
               while ($row = $stmt->fetch()){  //DBからレコードを取り出しwhile文でループ処理
                 $gender = $row['gender'];
                 $authority = $row['authority'];
@@ -213,10 +221,9 @@ if ($_SERVER["REQUEST_METHOD"] == "GET") {
                 }
              }  
             } else {
-                echo "<tr>データはありません</tr>";
-            } 
-          //echo:取得した情報の表示と表示場所指定
-        
+                echo "<tr><td colspan='12'>データはありません</td></tr>";
+            }
+          } 
         ?>
           <script>
               function updateAccount(accountId) {

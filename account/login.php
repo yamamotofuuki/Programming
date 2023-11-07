@@ -10,7 +10,7 @@ $error_message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     try {
         // データベースへの接続
-        $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "roott", "mysql");
+        $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
         
         $mail = $_POST['mail'];
         $password = $_POST['password'];
@@ -75,31 +75,19 @@ session_destroy();
     
   <div class="main-container">
     <form action="login.php" method="POST">
-      <input type="hidden" name="id" value="<?php echo $accountId; ?>">
+      <input type="hidden" name="id">
         
     <div>   
       <label>メールアドレス</label>
         <input type="email" maxlength="100" class="maill" size="35" name="mail"
                pattern="[A-Za-z0-9\-@.]*" required><br>
     </div>
-    <?php
-      // もしGETパラメータにerrorが含まれている場合、エラーメッセージを表示
-      if (isset($_GET['error']) && strpos($_GET['error'], 'メールアドレスが未入力です') !== false) {
-        echo "<div class='error'>メールアドレスが未入力です。</div>";
-      }
-    ?>
         
     <div>   
       <label>パスワード</label>
         <input type="text" maxlength="10" class="pw" size="35" name="password"
                pattern="^[a-zA-Z0-9]+$" required><br>
     </div>
-    <?php
-      // もしGETパラメータにerrorが含まれている場合、エラーメッセージを表示
-      if (isset($_GET['error']) && strpos($_GET['error'], 'パスワードが未入力です') !== false) {
-        echo "<div class='error'>パスワードが未入力です。</div>";
-      }
-    ?>
         
     <?php
       if (isset($_GET['error']) && $_GET['error'] == 1) {
@@ -111,7 +99,7 @@ session_destroy();
       // エラーメッセージを表示
       if (!empty($error_message)) {
         echo "<h2>エラーが発生したためログイン情報を取得できません</h2>";
-      }  
+      }
     ?>
         
     <div>
