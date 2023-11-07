@@ -3,7 +3,7 @@ mb_internal_encoding("utf8");
 
 // データベースへの接続
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
-    
+
 // 初期表示では検索条件を空にする
 if ($_SERVER["REQUEST_METHOD"] == "GET" && empty($_GET)) {
     $stmt = false; // データがないことを示すフラグ
@@ -223,7 +223,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
             } else {
                 echo "<tr><td colspan='12'>データはありません</td></tr>";
             }
-          } 
+          }
         ?>
           <script>
               function updateAccount(accountId) {
