@@ -4,6 +4,8 @@ mb_internal_encoding("utf8");
 // データベースへの接続
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
 
+$stmt = null; // 初期化
+    
 // 初期表示では検索条件を空にする
 if ($_SERVER["REQUEST_METHOD"] == "GET" && empty($_GET)) {
     $stmt = false; // データがないことを示すフラグ
@@ -41,10 +43,10 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
     if (!empty($mail)) {
         $where[] = "mail LIKE '%$mail%'";
     }
-    if (!empty($gender)) {
+    if ($gender !== '') {
         $where[] = "gender = $gender";
     }
-    if (!empty($authority)) {
+    if ($authority !== '') {
         $where[] = "authority = $authority";
     }
 
@@ -119,12 +121,14 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
         <td>
           <input type="radio" name="gender" value="0" checked> 男
           <input type="radio" name="gender" value="1"> 女
+          <input type="radio" name="gender" value="">選択なし
         </td>
       </tr>
       <tr>
         <th>アカウント権限</th>
         <td>
           <select name="authority">
+            <option value="">選択なし</option>
             <option value="0" selected>一般</option>
             <option value="1">管理者</option>
           </select>
@@ -223,7 +227,10 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
             } else {
                 echo "<tr><td colspan='12'>データはありません</td></tr>";
             }
+          } else {
           }
+          //echo:取得した情報の表示と表示場所指定
+        
         ?>
           <script>
               function updateAccount(accountId) {
