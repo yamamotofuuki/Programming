@@ -41,7 +41,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
 // ユーザーがログアウトした際、セッションを破棄する
-$_SESSION = array();
+//$_SESSION = array();
 session_destroy();
 
 ?>

@@ -2,10 +2,7 @@
 // セッションを開始または再開
 session_start();
 
-// authorityが未定義の場合、空文字で初期化
-if (!isset($_SESSION['authority'])) {
-    $_SESSION['authority'] = '';
-}
+var_dump($_SESSION);
 
 // 一般権限でアクセスした場合にエラーメッセージを表示
 if ($_SESSION['authority'] == '0') {
@@ -27,11 +24,21 @@ $address_1 = isset($_SESSION['address_1']) ? $_SESSION['address_1'] : '';
 $address_2 = isset($_SESSION['address_2']) ? $_SESSION['address_2'] : '';
 $authority = isset($_SESSION['authority']) ? $_SESSION['authority'] : '';
 
-// セッション変数のデータをクリアする
-session_unset();
+// セッション変数のデータを指定してクリアする
+unset($_SESSION['family_name']);
+unset($_SESSION['last_name']);
+unset($_SESSION['family_name_kana']);
+unset($_SESSION['last_name_kana']);
+unset($_SESSION['mail']);
+unset($_SESSION['password']);
+unset($_SESSION['gender']);
+unset($_SESSION['postal_code']);
+unset($_SESSION['prefecture']);
+unset($_SESSION['address_1']);
+unset($_SESSION['address_2']);
 
 // ユーザーがログアウトした際、セッションを破棄し新しいセッションを開始する必要がある場合
-session_destroy();
+//session_destroy();
 
 ?>
 
@@ -48,7 +55,7 @@ session_destroy();
 <header>
   <div class="logo"></div>
     <ul>
-        <li><a href="index.html">トップ</a></li>
+        <li><a href="index.php">トップ</a></li>
         <li>プロフィール</li>
         <li>D.IBlogについて</li>
         <li>アカウント登録</li>

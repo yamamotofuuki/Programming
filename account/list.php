@@ -1,5 +1,6 @@
 <?php
 session_start();
+var_dump($_SESSION);
 
 mb_internal_encoding("utf8");
 
@@ -7,6 +8,7 @@ mb_internal_encoding("utf8");
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
 
 $stmt = null; // 初期化
+
 
 // 一般権限でアクセスした場合にエラーメッセージを表示
 if ($_SESSION['authority'] == '0') {
@@ -94,7 +96,7 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
 <header>
   <div class="logo"></div>
     <ul>
-      <li><a href="index.html">トップ</a></li>
+      <li><a href="index.php">トップ</a></li>
       <li>プロフィール</li>
       <li>D.IBlogについて</li>
       <li>アカウント登録</li>
