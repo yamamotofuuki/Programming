@@ -2,6 +2,17 @@
 // セッションを開始または再開
 session_start();
 
+// authorityが未定義の場合、空文字で初期化
+if (!isset($_SESSION['authority'])) {
+    $_SESSION['authority'] = '';
+}
+
+// 一般権限でアクセスした場合にエラーメッセージを表示
+if ($_SESSION['authority'] == '0') {
+    echo "<p>アクセス権限がありません。</p>";
+    exit();
+}
+
 // セッション変数から値を取得し、フォームに表示
 $family_name = isset($_SESSION['family_name']) ? $_SESSION['family_name'] : '';
 $last_name = isset($_SESSION['last_name']) ? $_SESSION['last_name'] : '';

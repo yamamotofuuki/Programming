@@ -1,10 +1,18 @@
 <?php
+session_start();
+
 mb_internal_encoding("utf8");
 
 // データベースへの接続
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
 
 $stmt = null; // 初期化
+
+// 一般権限でアクセスした場合にエラーメッセージを表示
+if ($_SESSION['authority'] == '0') {
+    echo "<p>アクセス権限がありません。</p>";
+    exit();
+}
     
 // 初期表示では検索条件を空にする
 if ($_SERVER["REQUEST_METHOD"] == "GET" && empty($_GET)) {
@@ -228,6 +236,8 @@ elseif ($_SERVER["REQUEST_METHOD"] == "GET") {
                 echo "<tr><td colspan='12'>データはありません</td></tr>";
             }
           } else {
+              // $stmt がない場合（初期表示時）は何も表示しない
+              // 何もコードを書かない
           }
           //echo:取得した情報の表示と表示場所指定
         
