@@ -2,10 +2,14 @@
 // セッションを開始または再開
 session_start();
 
-// 一般権限でアクセスした場合にエラーメッセージを表示
-if ($_SESSION['authority'] == '0') {
-    echo "<p>アクセス権限がありません。</p>";
-    exit();
+var_dump($_SESSION);
+
+// //ログインなし、または一般権限でアクセスした場合にエラー表示
+if ($_SESSION['authority'] != '1') {
+    if ($_SESSION['authority'] != '0' || $_SESSION['authority'] == '0') {
+        echo "<p>アクセス権限がありません。</p>";
+        exit();
+    }
 }
 
 // セッション変数から値を取得し、フォームに表示
@@ -22,11 +26,22 @@ $address_1 = isset($_SESSION['address_1']) ? $_SESSION['address_1'] : '';
 $address_2 = isset($_SESSION['address_2']) ? $_SESSION['address_2'] : '';
 $authority = isset($_SESSION['authority']) ? $_SESSION['authority'] : '';
 
-// セッション変数のデータをクリアする
-session_unset();
+// セッション変数のデータを指定してクリアする
+unset($_SESSION['family_name']);
+unset($_SESSION['last_name']);
+unset($_SESSION['family_name_kana']);
+unset($_SESSION['last_name_kana']);
+unset($_SESSION['mail']);
+unset($_SESSION['password']);
+unset($_SESSION['gender']);
+unset($_SESSION['postal_code']);
+unset($_SESSION['prefecture']);
+unset($_SESSION['address_1']);
+unset($_SESSION['address_2']);
+//session_unset();
 
 // ユーザーがログアウトした際、セッションを破棄し新しいセッションを開始する必要がある場合
-session_destroy();
+//session_destroy();
 
 ?>
 
@@ -380,8 +395,8 @@ session_destroy();
     <div>
       <label>アカウント権限</label>
       <select class="prefecture" name="authority">
-      <option value="0"<?php echo isset($authority) && $authority == 0 ? 'checked' : ''; ?>>一般</option>
-      <option value="1"<?php echo isset($authority) && $authority == 1 ? 'checked' : ''; ?>>管理者</option>
+      <option value="0"<?php echo isset($authority) && $authority == 0 ? 'selected' : ''; ?>>一般</option>
+      <option value="1"<?php echo isset($authority) && $authority == 1 ? 'selected' : ''; ?>>管理者</option>
       </select>
     </div>
         

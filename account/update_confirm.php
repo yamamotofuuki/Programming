@@ -2,6 +2,8 @@
 // セッションを開始または再開
 session_start();
 
+var_dump($_SESSION);
+
     // セッションに $accountId を格納
     $accountId = $_POST['id'];
     $_SESSION['accountId'] = $accountId;
@@ -18,7 +20,7 @@ session_start();
     $_SESSION['prefecture'] = $_POST['prefecture'];
     $_SESSION['address_1'] = $_POST['address_1'];
     $_SESSION['address_2'] = $_POST['address_2'];
-    $_SESSION['authority'] = $_POST['authority'];
+    
 
 // セッションを終了させる
 //session_write_close();

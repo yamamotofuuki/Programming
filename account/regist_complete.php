@@ -86,7 +86,7 @@ try {
         <?php } ?>
     </div>
 
-    <form action="index.html">
+    <form action="index.php">
         <input type="submit" class="submit3" value="TOPページへ戻る">
     </form>
 </main>

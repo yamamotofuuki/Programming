@@ -1,10 +1,12 @@
 <?php
 session_start();
 
-// 一般権限でアクセスした場合にエラーメッセージを表示
-if ($_SESSION['authority'] == '0') {
-    echo "<p>アクセス権限がありません。</p>";
-    exit();
+// //ログインなし、または一般権限でアクセスした場合にエラー表示
+if ($_SESSION['authority'] != '1') {
+    if ($_SESSION['authority'] != '0' || $_SESSION['authority'] == '0') {
+        echo "<p>アクセス権限がありません。</p>";
+        exit();
+    }
 }
 
 ?>

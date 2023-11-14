@@ -1,13 +1,12 @@
 <?php
-// セッションを開始または再開
 session_start();
 
-var_dump($_SESSION);
-
-// 一般権限でアクセスした場合にエラーメッセージを表示
-if ($_SESSION['authority'] == '0') {
-    echo "<p>アクセス権限がありません。</p>";
-    exit();
+// //ログインなし、または一般権限でアクセスした場合にエラー表示
+if ($_SESSION['authority'] != '1') {
+    if ($_SESSION['authority'] != '0' || $_SESSION['authority'] == '0') {
+        echo "<p>アクセス権限がありません。</p>";
+        exit();
+    }
 }
 
 // セッション変数から値を取得し、フォームに表示
@@ -266,7 +265,7 @@ unset($_SESSION['address_2']);
     <label>アカウント権限</label>
     <select class="prefecture" name="authority">
     <option value="0"<?php if($authority == 0)echo'selected';?>>一般</option>
-    <option value="1"<?php if($authority == 1)echo'selected';?>>管理者</option>
+    <option value="1"<?php if($authority == 1)echo'';?>>管理者</option>
     </select>
   </div>
        

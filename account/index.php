@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+var_dump($_SESSION);
+
+// ここでログイン済みであるかどうかをチェックし、必要な情報を取得する
+
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // ログインしていない場合、ログインページにリダイレクト
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>

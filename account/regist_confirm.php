@@ -14,7 +14,7 @@ session_start();
     $_SESSION['prefecture'] = $_POST['prefecture'];
     $_SESSION['address_1'] = $_POST['address_1'];
     $_SESSION['address_2'] = $_POST['address_2'];
-    $_SESSION['authority'] = $_POST['authority'];
+    
 
 // セッションを終了させる
 //session_write_close();

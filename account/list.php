@@ -1,6 +1,15 @@
 <?php
 session_start();
+
 var_dump($_SESSION);
+
+// //ログインなし、一般権限でアクセスした場合にエラー表示
+if ($_SESSION['authority'] != '1') {
+    if ($_SESSION['authority'] != '0' || $_SESSION['authority'] == '0') {
+        echo "<p>アクセス権限がありません。</p>";
+        exit();
+    }
+}
 
 mb_internal_encoding("utf8");
 
@@ -8,13 +17,6 @@ mb_internal_encoding("utf8");
 $pdo = new PDO("mysql:dbname=lesson02;host=localhost;", "root", "mysql");
 
 $stmt = null; // 初期化
-
-
-// 一般権限でアクセスした場合にエラーメッセージを表示
-if ($_SESSION['authority'] == '0') {
-    echo "<p>アクセス権限がありません。</p>";
-    exit();
-}
     
 // 初期表示では検索条件を空にする
 if ($_SERVER["REQUEST_METHOD"] == "GET" && empty($_GET)) {
